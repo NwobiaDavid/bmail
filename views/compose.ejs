@@ -1,9 +1,9 @@
 <%-include("./partials/header.ejs")-%>
 
-<form action="/" method="post">
-    <input name="email" placeholder="receiver's bmail" type="text">
-    <textarea name="textarea" placeholder="write your message" cols="30" rows="10"></textarea>
-    <button type="submit">send</button>
+<form action="/" class="flex items-center  flex-col" method="post">
+    <input name="email" class="border-2 w-full rounded-full my-3 border-[#112D4E] px-2 py-1" placeholder="receiver's bmail" type="text">
+    <textarea name="textarea" class="border-2 p-2 rounded-lg border-[#112D4E] " placeholder="write your message..." cols="30" rows="10"></textarea>
+    <button class="px-4 py-[0.6rem] hover:text-white my-2 w-1/2 border-2 rounded-lg hover:bg-[#3F72AF] border-[#3F72AF]" type="submit">send</button>
 </form>
 
 <%-include("./partials/footer.ejs")-%>

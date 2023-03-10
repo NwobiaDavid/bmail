@@ -1,41 +1,38 @@
 <%-include("./partials/header.ejs")-%>
 
-<input placeholder="search..." type="text">
-   <div>
-    <!-- head section -->
-    <% bmail.forEach((obj)=>{ %>
-    <div>
-        <input type="checkbox" name="" id="">
-        
-         </h1><%= obj.mailAddress %><h1>
-           
-    </div>
+<!-- <input placeholder="search..." onkeyup="myFunct()" id="input" type="text"> -->
+<section class="flex items-center justify-center h-[70%] md:h-auto lg:w-1/2 md:w-[70%] w-[60%] ">
     
-    <!-- body section -->
-    <div>           
-            <% let short= obj.mailBody;%>
-           <% function truncate(short){ %>
-            
-               <% if(short.length>300){ %>
-                 <%   return short.substring(0, 300)+ '...'; %>
-               <% } return short; %>
-                 <% } %>
-              <%  let body= truncate(short); %>
-
-               <p> <%= body %> <a href="/bmails/<%= obj.mailAddress %>">Read </a></p>
-          
-             
-
-              
-    </div>
-    <div>
-        <p><%= Date %></p>
-    </div>
- <% } )%>
-    <!-- date section -->
-   
-  
-   </div>
-   <a href="/compose">Compose</a>
+    <div class="flex flex-col  rounded-lg my-3 bg-[#DBE2EF]">
+        <!-- head section -->
+        <% bmail.forEach((obj)=>{ %>
+        <div class="flex items-center mt-2 border-b-4 border-b-[#F9F7F7]">
+            <div class="p-2 flex items-center whitespace-nowrap">
+                <!-- <input type="checkbox" name="" id=""> -->
+                 <h1 class="address font-semibold text-md md:text-lg "><%= obj.mailAddress %></h1>
+            </div>
+            <!-- body section -->
+            <div class="border-x-2  hidden lg:block p-1 border-[#112D4E]">
+                    <% let short= obj.mailBody;%>
+                   <% function truncate(short){ %>
+                       <% if(short.length>100){ %>
+                         <%   return short.substring(0, 100)+ '...'; %>
+                       <% } return short; %>
+                         <% } %>
+                      <%  let body= truncate(short); %>
+                       <p class="body"> <%= body %> <a class=" text-[#3F72AF] hover:text-[#F9F7F7] font-semibold" href="/bmails/<%= obj.mailAddress %>">Read </a></p>
+            </div>
+            <a class="block lg:hidden px-2 text-[#3F72AF] hover:text-[#F9F7F7] font-semibold" href="/bmails/<%= obj.mailAddress %>">Read </a>
+            <div class="hidden md:flex whitespace-nowrap p-2 items-center">
+                <p><%= Date %></p>
+            </div>
+        </div>
+     <% } )%>
+        <!-- date section -->
+    
+    
+       </div>
+</section>
+   <a class=" m-4 px-4 py-[0.6rem] border-2 rounded-lg hover:text-white hover:bg-[#3F72AF] border-[#3F72AF]" href="/compose">Compose</a>
 
 <%-include("./partials/footer.ejs")-%>

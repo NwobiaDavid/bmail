@@ -1,11 +1,13 @@
 <%-include("./partials/header.ejs")-%>
 
-<h1><%=bmail.mailAddress %></h1>
-<p><%= bmail.mailBody %></p>
+<div class="my-3 text-center flex justify-center items-center flex-col">
+    <h1 class="p-2 text-lg font-semibold border-b-2 border-[#DBE2EF]"><%=bmail.mailAddress %></h1>
+    <p class="md:w-1/2 md:p-2 p-2 text-sm md:text-base tracking-wide"><%= bmail.mailBody %></p>
+    
+    <p class="p-2 border-t-2 font-medium border-[#DBE2EF]"><%= Date %></p>
+</div>
 
-<p><%= Date %></p>
-
-<a href="/">Return</a>
+<a href="/" class="px-4 py-[0.6rem] hover:text-white my-2 border-2 rounded-lg hover:bg-[#3F72AF] border-[#3F72AF]">Return</a>
 
 
 <%-include("./partials/footer.ejs")-%>

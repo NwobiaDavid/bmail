@@ -2,6 +2,7 @@ const express= require('express');
 const bodyParser= require('body-parser');
 const ejs = require('ejs');
 var _ = require('lodash');
+const moment = require('moment');
 
 const dat= require(__dirname+"/date");
 
@@ -10,27 +11,32 @@ const port= 3000;
 
 app.set('view engine', 'ejs');
 
-// app.use(express.static("public"));
+// app.use('*',express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
 const mails= [];
 
 app.get("/",(req,res)=>{
-    let date= dat.getDate();
- 
-    res.render('home',{bmail:mails, Date:date});
+    // let date= dat.getDate();
+    const mom= moment().startOf('hour').fromNow();
+    res.render('home',{bmail:mails, Date:mom});
 
 })
 
 
 app.post('/', (req, res) => {
-    let mail={
+    if(req.body.email || req.body.textarea !== ""){
+        let mail={
         mailAddress: req.body.email,
         mailBody: req.body.textarea,
     };
     mails.push(mail);
     res.redirect('/success');
+    }else{
+        res.redirect('/');
+    }
+    
 
 })
 
@@ -44,12 +50,13 @@ app.get('/compose', (req, res) => {
 
 
 app.get("/bmails/:id",(req,res)=>{
-    let date= dat.getDate();
+    // let date= dat.getDate();
+    const mom= moment().startOf('hour').fromNow();
     mails.forEach((obj)=> {
         let x= _.lowerCase(req.params.id);
         let y= _.lowerCase(obj.mailAddress);
         if (y===x) {
-            res.render("mail",{bmail:obj,  Date:date});
+            res.render("mail",{bmail:obj,  Date:mom});
         }
     })
 
