@@ -1,0 +1,41 @@
+<%-include("./partials/header.ejs")-%>
+
+<input placeholder="search..." type="text">
+   <div>
+    <!-- head section -->
+    <% bmail.forEach((obj)=>{ %>
+    <div>
+        <input type="checkbox" name="" id="">
+        
+         </h1><%= obj.mailAddress %><h1>
+           
+    </div>
+    
+    <!-- body section -->
+    <div>           
+            <% let short= obj.mailBody;%>
+           <% function truncate(short){ %>
+            
+               <% if(short.length>300){ %>
+                 <%   return short.substring(0, 300)+ '...'; %>
+               <% } return short; %>
+                 <% } %>
+              <%  let body= truncate(short); %>
+
+               <p> <%= body %> <a href="/bmails/<%= obj.mailAddress %>">Read </a></p>
+          
+             
+
+              
+    </div>
+    <div>
+        <p><%= Date %></p>
+    </div>
+ <% } )%>
+    <!-- date section -->
+   
+  
+   </div>
+   <a href="/compose">Compose</a>
+
+<%-include("./partials/footer.ejs")-%>
