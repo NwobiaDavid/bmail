@@ -7,7 +7,7 @@ const moment = require('moment');
 const dat= require(__dirname+"/date");
 
 const app= express();
-const port= process.env.PORT || 3000;
+const port= 3000;
 
 app.set('view engine', 'ejs');
 
@@ -63,6 +63,6 @@ app.get("/bmails/:id",(req,res)=>{
 })
 
 
-app.listen(port,()=>{
+app.listen(process.env.PORT || port,()=>{
     console.log(`listening on port:${port}...`);
 })
